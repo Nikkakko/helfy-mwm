@@ -11,8 +11,7 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="why-us-strip" aria-label="Why choose Helfy">
+  <div class="why-us-strip" aria-label="Why choose Helfy">
       <div class="why-us-label">Why Us?</div>
       <div class="benefit-rail" tabindex="0">
         <div class="benefit-item"><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
@@ -49,8 +48,9 @@
               <path d="m12 3 2.8 5.7L21 9.6l-4.5 4.4 1 6.1-5.5-2.9-5.5 2.9 1-6.1L3 9.6l6.2-.9L12 3Z" />
             </svg></span><span>7+ years of trust</span></div>
       </div>
-    </div>
+  </div>
 
+  <header class="site-header">
     <div class="brand-header">
       <a class="brand-mark" href="index.html" aria-label="Doktorabc home">
         <img src="assets/logo-header/Main/Vector.png" alt="" width="36" height="35" />
@@ -77,14 +77,16 @@
 
       <div class="hero-media">
         <picture>
-            <source media="(max-width: 767px)" srcset="assets/hero_mobile.png" />
+          <source media="(max-width: 767px)" srcset="assets/hero_mobile.png" />
           <img src="assets/hero_desktop.png" alt="Zufriedener Mann mit beiden Händen in einer OK-Geste"
             draggable="false" />
         </picture>
+
+        <a class="hero-cta" href="#how-it-works">Jetzt Rezept anfordern!</a>
       </div>
 
       <div class="hero-actions">
-        <a class="hero-cta" href="#how-it-works">Jetzt Rezept anfordern!</a>
+        <a class="hero-cta hero-cta--desktop" href="#how-it-works">Jetzt Rezept anfordern!</a>
 
         <div class="hero-trust" aria-label="Käuferschutz-Bewertung: 4,81, sehr gut">
           <img src="assets/trusted.png" alt="Trusted Shops Garantie" />
