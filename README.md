@@ -14,6 +14,8 @@ This repository contains the first mobile-first implementation pass for the Helf
 - `assets/card_1.png` — exported consultation-card artwork
 - `assets/card_2.png` and `assets/card_3.png` — additional exported card artwork
 - `assets/logo-header/Main/Vector.png` — exported Doktorabc logo mark
+- `assets/trusted.png` — Trusted Shops protection badge
+- `assets/check_icon.png` — benefit-list check icon
 - `README.md` — setup and project notes
 
 The private working brief is stored in `TECH_TASK.md`. It is intentionally ignored by Git.
