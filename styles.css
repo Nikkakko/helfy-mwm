@@ -278,6 +278,8 @@ body {
 }
 .hero-media img {
   height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .sr-only {
   position: absolute;
