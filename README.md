@@ -2,7 +2,7 @@
 
 ## Project status
 
-This repository contains a mobile-first implementation pass for the Helfy marketing web assignment. The page is being built step-by-step from the Figma file.
+This repository contains the completed mobile-first implementation of the Helfy marketing web assignment, built from the supplied Figma file.
 
 ## Included files
 
@@ -16,6 +16,8 @@ This repository contains a mobile-first implementation pass for the Helfy market
 - `assets/logo-header/Main/Vector.png` — exported Doktorabc logo mark
 - `assets/trusted.png` — Trusted Shops protection badge
 - `assets/check_icon.png` — benefit-list check icon
+- `assets/fb_svg.svg`, `assets/in_svg.svg`, `assets/yt_svg.svg`, `assets/x_svg.svg`, `assets/insta_svg.svg` — exported social icons
+- `assets/footer/` — exported footer certification and payment badges
 - `README.md` — setup and project notes
 
 The private working brief is stored in `TECH_TASK.md`. It is intentionally ignored by Git.
@@ -34,35 +36,23 @@ python3 -m http.server 8000
 
 Then open [http://localhost:8000](http://localhost:8000).
 
-## Planned implementation
+## Implemented functionality
 
-The final page will use only HTML, CSS, and vanilla JavaScript and will include:
+The page uses only HTML, CSS, and vanilla JavaScript and includes:
 
 - Hero section with the exact ID `real_helfy_hero_section`
 - Benefits
 - Trust elements
 - CTA
-- Testimonials
-- How it works
-- Footer
+- Responsive testimonials carousel with pagination and navigation controls
+- Responsive how-it-works cards with Figma artwork and background line treatment
+- Responsive footer with JavaScript-rendered social icons and badges
+- Sticky header with scroll blur treatment
+- Smooth section scrolling
+- Mobile hero CTA overlay with viewport-based slide/fade animation
 
-The page will be checked at 1920px, 1280px, 390px, and intermediate widths. Figma interactions are being implemented section by section.
+## Responsive coverage
 
-## Current unfinished work
+The layout has been refined for mobile, tablet, 1024px, 1280px, 1440px, and large desktop widths. No build step or dependency installation is required.
 
-- Remaining Figma design sections, including how it works and the footer
-- Final landing-page content and refinements
-- Remaining images, icons, fonts, and other brand assets
-- Final responsive refinements for all remaining sections
-- Remaining prototype interactions
-- Backend or form submission integration
-
-## Implemented so far
-
-- Mobile-first dark “Why Us?” benefits rail based on the supplied screenshots.
-- Swipeable horizontal feature items on small screens.
-- Compact desktop presentation at widths of 900px and above.
-- The required hero ID `real_helfy_hero_section` is implemented.
-- Figma color tokens added as semantic CSS variables.
-- Shared border color added as `--border-default: #BEBEBE`.
-- Responsive testimonials section added with four cards, pagination dots, and previous/next controls.
+Backend or form submission integration is outside the scope of this assignment.
