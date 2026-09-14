@@ -1,5 +1,4 @@
 :root {
-  /* Figma color tokens collected from the supplied design inspection. */
   --surface-background-dark: #08080a;
   --surface-background: #ffffff;
   --surface-green-soft: #e8f2e4;
@@ -11,7 +10,7 @@
   --icon-primary: #1f2129;
   --primary-600: #0a9281;
   --gradient-green: #6bc140;
-
+  --border-default: #bebebe;
   color: var(--text-primary);
   background: var(--surface-background);
   font-family: Arial, sans-serif;
@@ -21,48 +20,136 @@
   box-sizing: border-box;
 }
 body {
+  min-width: 320px;
   margin: 0;
+  background: var(--surface-background-dark);
 }
-.app-header {
-  padding: 28px 6vw;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--text-secondary) 18%, transparent);
-  background: var(--surface-background);
+.site-header {
+  color: var(--surface-background);
+  background: var(--surface-background-dark);
 }
-.brand {
-  color: var(--text-deep-green);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.08em;
+.brand-header {
+  min-height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px 20px 0 0;
+  color: var(--icon-primary);
+  background: #f4f6f7;
+}
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1.2px;
   text-decoration: none;
 }
-.app-shell {
-  width: min(680px, calc(100% - 40px));
-  margin: 15vh auto;
+.brand-mark img {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
-.eyebrow {
-  color: var(--accent-green);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.why-us-strip {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  overflow: hidden;
 }
-h1 {
-  max-width: 620px;
-  margin: 20px 0 16px;
-  font-size: clamp(42px, 8vw, 76px);
-  line-height: 0.98;
-  letter-spacing: -0.06em;
+.why-us-label {
+  flex: 0 0 108px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  color: var(--surface-background);
+  font-size: 15px;
+  white-space: nowrap;
 }
-.intro {
-  color: var(--text-secondary);
-  font-size: 20px;
-  line-height: 1.5;
+.why-us-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  height: 31px;
+  background: var(--border-default);
+  transform: translateY(-50%);
 }
-.status {
-  margin-top: 40px;
-  padding: 16px 18px;
-  border-left: 4px solid var(--primary-600);
-  color: var(--text-deep-green);
-  background: var(--surface-green-soft);
+.benefit-rail {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+.benefit-rail::-webkit-scrollbar {
+  display: none;
+}
+.benefit-item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 18px;
+  color: var(--surface-background);
+  font-size: 11px;
+  white-space: nowrap;
+}
+.benefit-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #3c3f4c;
+}
+.benefit-icon svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: var(--surface-background);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+@media (min-width: 900px) {
+  .brand-header {
+    min-height: 60px;
+    border-radius: 0;
+    background: var(--surface-background);
+  }
+  .why-us-strip {
+    min-height: 40px;
+    border-radius: 0;
+  }
+  .why-us-label {
+    flex-basis: 130px;
+    font-size: 14px;
+  }
+  .benefit-rail {
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+  }
+  .benefit-item {
+    padding: 0 10px;
+    font-size: 10px;
+    gap: 7px;
+  }
+  .benefit-icon {
+    width: 20px;
+    height: 20px;
+    flex-basis: 20px;
+  }
+  .benefit-icon svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 1.8;
+  }
 }
