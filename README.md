@@ -16,6 +16,7 @@ This repository contains the completed mobile-first implementation of the Helfy 
 - `assets/logo-header/Main/Vector.png` — exported Doktorabc logo mark
 - `assets/trusted.png` — Trusted Shops protection badge
 - `assets/check_icon.png` — benefit-list check icon
+- `assets/benefits/` — separate SVG assets for the JavaScript-rendered “Why Us?” rail
 - `assets/fb_svg.svg`, `assets/in_svg.svg`, `assets/yt_svg.svg`, `assets/x_svg.svg`, `assets/insta_svg.svg` — exported social icons
 - `assets/footer/` — exported footer certification and payment badges
 - `README.md` — setup and project notes
@@ -41,7 +42,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 The page uses only HTML, CSS, and vanilla JavaScript and includes:
 
 - Hero section with the exact ID `real_helfy_hero_section`
-- Benefits
+- JavaScript-rendered “Why Us?” benefits rail
 - Trust elements
 - CTA
 - Responsive testimonials carousel with pagination and navigation controls

@@ -924,14 +924,10 @@ body {
   border-radius: 50%;
   background: #3c3f4c;
 }
-.benefit-icon svg {
+.benefit-icon img {
+  display: block;
   width: 12px;
   height: 12px;
-  fill: none;
-  stroke: var(--surface-background);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.7;
 }
 
 @media (min-width: 900px) {
@@ -963,10 +959,9 @@ body {
     height: 20px;
     flex-basis: 20px;
   }
-  .benefit-icon svg {
+  .benefit-icon img {
     width: 12px;
     height: 12px;
-    stroke-width: 1.8;
   }
   .hero-section {
     display: grid;

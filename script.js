@@ -1,5 +1,46 @@
 document.documentElement.dataset.appReady = 'true';
 
+const benefitItems = [
+  { label: 'Discreet & qualified treatments', iconPath: 'assets/benefits/discreet-treatments.svg' },
+  { label: 'Online consultation & prescription', iconPath: 'assets/benefits/online-consultation.svg' },
+  { label: 'Shipping 1–2 days', iconPath: 'assets/benefits/shipping.svg' },
+  { label: 'Secure information', iconPath: 'assets/benefits/secure-information.svg' },
+  { label: 'Affordable pricing with no hidden fees', iconPath: 'assets/benefits/affordable-pricing.svg' },
+  { label: '600K+ customers', iconPath: 'assets/benefits/customers.svg' },
+  { label: '40+ categories', iconPath: 'assets/benefits/categories.svg' },
+  { label: '24h order processing', iconPath: 'assets/benefits/order-processing.svg' },
+  { label: '7+ years of trust', iconPath: 'assets/benefits/trust.svg' },
+];
+
+const benefitRail = document.querySelector('[data-benefit-rail]');
+
+if (benefitRail) {
+  const createBenefitItem = ({ label, iconPath }) => {
+    const item = document.createElement('div');
+    item.className = 'benefit-item';
+
+    const icon = document.createElement('span');
+    icon.className = 'benefit-icon';
+    icon.setAttribute('aria-hidden', 'true');
+
+    const image = document.createElement('img');
+    image.src = iconPath;
+    image.alt = '';
+    image.width = 24;
+    image.height = 24;
+    image.draggable = false;
+    icon.append(image);
+
+    const text = document.createElement('span');
+    text.textContent = label;
+
+    item.append(icon, text);
+    return item;
+  };
+
+  benefitRail.replaceChildren(...benefitItems.map(createBenefitItem));
+}
+
 const testimonialItems = [
   {
     name: 'Jan S.',
