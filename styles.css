@@ -1,15 +1,68 @@
 :root {
-  color: #1d2b29;
-  background: #f6f5ef;
+  /* Figma color tokens collected from the supplied design inspection. */
+  --surface-background-dark: #08080a;
+  --surface-background: #ffffff;
+  --surface-green-soft: #e8f2e4;
+  --surface-green-pale: #f1f7ef;
+  --text-primary: #000000;
+  --text-deep-green: #154b3e;
+  --accent-green: #008935;
+  --text-secondary: #616975;
+  --icon-primary: #1f2129;
+  --primary-600: #0a9281;
+  --gradient-green: #6bc140;
+
+  color: var(--text-primary);
+  background: var(--surface-background);
   font-family: Arial, sans-serif;
 }
 
-* { box-sizing: border-box; }
-body { margin: 0; }
-.app-header { padding: 28px 6vw; border-bottom: 1px solid rgba(29, 43, 41, .12); }
-.brand { color: #23483c; font-size: 24px; font-weight: 800; letter-spacing: -.08em; text-decoration: none; }
-.app-shell { width: min(680px, calc(100% - 40px)); margin: 15vh auto; }
-.eyebrow { color: #587d68; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-h1 { max-width: 620px; margin: 20px 0 16px; font-size: clamp(42px, 8vw, 76px); line-height: .98; letter-spacing: -.06em; }
-.intro { color: #687572; font-size: 20px; line-height: 1.5; }
-.status { margin-top: 40px; padding: 16px 18px; border-left: 4px solid #b9dc9d; color: #52615d; background: #fffefa; }
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.app-header {
+  padding: 28px 6vw;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--text-secondary) 18%, transparent);
+  background: var(--surface-background);
+}
+.brand {
+  color: var(--text-deep-green);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  text-decoration: none;
+}
+.app-shell {
+  width: min(680px, calc(100% - 40px));
+  margin: 15vh auto;
+}
+.eyebrow {
+  color: var(--accent-green);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+h1 {
+  max-width: 620px;
+  margin: 20px 0 16px;
+  font-size: clamp(42px, 8vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+.intro {
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1.5;
+}
+.status {
+  margin-top: 40px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--primary-600);
+  color: var(--text-deep-green);
+  background: var(--surface-green-soft);
+}
