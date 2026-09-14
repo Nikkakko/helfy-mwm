@@ -75,6 +75,61 @@ const howItWorksItems = [
   },
 ];
 
+const footerSocialItems = [
+  { label: 'Facebook', image: 'assets/fb_svg.svg' },
+  { label: 'LinkedIn', image: 'assets/in_svg.svg' },
+  { label: 'YouTube', image: 'assets/yt_svg.svg' },
+  { label: 'X', image: 'assets/x_svg.svg' },
+  { label: 'Instagram', image: 'assets/insta_svg.svg' },
+];
+
+const footerBadgeItems = [
+  { alt: 'DoktorABC Zertifizierung', image: 'assets/footer/doctorabc-seal.png' },
+  { alt: 'DMCA geschützt', image: 'assets/footer/dmca.png' },
+  { alt: 'Qualitätssiegel Datenschutz', image: 'assets/footer/doctorabc-certification.png' },
+  { alt: 'PCI konform', image: 'assets/footer/pci.png' },
+];
+
+const renderFooterAssets = () => {
+  const socialContainer = document.querySelector('[data-footer-socials]');
+  const badgeContainer = document.querySelector('[data-footer-badges]');
+
+  if (!socialContainer || !badgeContainer) {
+    return;
+  }
+
+  const createSocialLink = ({ label, image: imageSource }) => {
+    const link = document.createElement('a');
+    link.className = 'footer-social-link';
+    link.href = '#';
+    link.setAttribute('aria-label', label);
+
+    const image = document.createElement('img');
+    image.className = 'footer-social-icon';
+    image.src = imageSource;
+    image.alt = '';
+    image.width = 55;
+    image.height = 55;
+    image.draggable = false;
+
+    link.append(image);
+    return link;
+  };
+
+  const createBadge = ({ alt, image: imageSource }) => {
+    const image = document.createElement('img');
+    image.src = imageSource;
+    image.alt = alt;
+    image.draggable = false;
+    return image;
+  };
+
+  socialContainer.replaceChildren(...footerSocialItems.map(createSocialLink));
+  badgeContainer.replaceChildren(...footerBadgeItems.map(createBadge));
+};
+
+renderFooterAssets();
+
 const appendMarkedText = (element, text) => {
   const emphasisPattern = /\*\*(.+?)\*\*/g;
   let textEnd = 0;
