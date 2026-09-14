@@ -21,8 +21,6 @@ This repository contains the completed mobile-first implementation of the Helfy 
 - `assets/footer/` — exported footer certification and payment badges
 - `README.md` — setup and project notes
 
-The private working brief is stored in `TECH_TASK.md`. It is intentionally ignored by Git.
-
 ## Run locally
 
 No dependencies or build tools are required.
