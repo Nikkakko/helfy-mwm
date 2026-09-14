@@ -51,6 +51,48 @@ const testimonialItems = [
   },
 ];
 
+const howItWorksItems = [
+  {
+    number: 1,
+    title: 'Füllen Sie einen vertraulichen **Online-Fragebogen aus**',
+    image: 'assets/card_1.png',
+    imageAlt: 'Online-Fragebogen auf einem Smartphone',
+    imageClass: 'steps-card-image--form',
+  },
+  {
+    number: 2,
+    title: 'Erhalten Sie eine ärztlich geprüfte **Therapieempfehlung**',
+    image: 'assets/card_2.png',
+    imageAlt: 'Lächelnder Arzt in einem weißen Kittel',
+    imageClass: 'steps-card-image--doctor',
+  },
+  {
+    number: 3,
+    title: 'Diskrete Lieferung nach\nHause innerhalb von\n**1–48 Stunden**',
+    image: 'assets/card_3.png',
+    imageAlt: 'Diskretes Versandpaket',
+    imageClass: 'steps-card-image--package',
+  },
+];
+
+const appendMarkedText = (element, text) => {
+  const emphasisPattern = /\*\*(.+?)\*\*/g;
+  let textEnd = 0;
+
+  text.replace(emphasisPattern, (match, emphasizedText, matchStart) => {
+    element.append(document.createTextNode(text.slice(textEnd, matchStart)));
+
+    const emphasizedElement = document.createElement('em');
+    emphasizedElement.textContent = emphasizedText;
+    element.append(emphasizedElement);
+
+    textEnd = matchStart + match.length;
+    return match;
+  });
+
+  element.append(document.createTextNode(text.slice(textEnd)));
+};
+
 const testimonials = document.querySelector('[data-testimonials]');
 
 if (testimonials) {
@@ -59,21 +101,7 @@ if (testimonials) {
 
   const renderReview = (reviewText) => {
     const review = document.createElement('p');
-    const emphasisPattern = /\*\*(.+?)\*\*/g;
-    let textEnd = 0;
-
-    reviewText.replace(emphasisPattern, (match, emphasizedText, matchStart) => {
-      review.append(document.createTextNode(reviewText.slice(textEnd, matchStart)));
-
-      const emphasizedElement = document.createElement('em');
-      emphasizedElement.textContent = emphasizedText;
-      review.append(emphasizedElement);
-
-      textEnd = matchStart + match.length;
-      return match;
-    });
-
-    review.append(document.createTextNode(reviewText.slice(textEnd)));
+    appendMarkedText(review, reviewText);
     return review;
   };
 
@@ -198,6 +226,107 @@ if (testimonials) {
 
     dots.forEach((dot) => {
       dot.addEventListener('click', () => updateTestimonials(Number(dot.dataset.testimonialDot)));
+    });
+  });
+}
+
+const howItWorks = document.querySelector('[data-how-it-works]');
+
+if (howItWorks) {
+  const track = howItWorks.querySelector('.steps-track');
+  const pagination = howItWorks.querySelector('.steps-pagination');
+  const previousButton = howItWorks.querySelector('[data-steps-prev]');
+  const nextButton = howItWorks.querySelector('[data-steps-next]');
+  let activeIndex = 0;
+  let dots = [];
+
+  const createStepCard = (item) => {
+    const card = document.createElement('li');
+    card.className = `steps-card${item.number === 2 ? ' steps-card--featured' : ''}`;
+
+    const number = document.createElement('span');
+    number.className = 'steps-card-number';
+    number.setAttribute('aria-hidden', 'true');
+    number.textContent = item.number;
+
+    const title = document.createElement('p');
+    title.className = 'steps-card-title';
+    appendMarkedText(title, item.title);
+
+    const image = document.createElement('img');
+    image.className = `steps-card-image ${item.imageClass}`;
+    image.src = item.image;
+    image.alt = item.imageAlt;
+    image.draggable = false;
+
+    card.append(number, title, image);
+    return card;
+  };
+
+  const createStepDot = (index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.role = 'tab';
+    dot.className = index === 0 ? 'is-active' : '';
+    dot.setAttribute('aria-selected', String(index === 0));
+    dot.setAttribute('aria-label', `Schritt ${index + 1}`);
+    dot.dataset.stepDot = index;
+    return dot;
+  };
+
+  const getVisibleItemCount = () => (window.matchMedia('(min-width: 900px)').matches ? 3 : 1);
+  const getPositionCount = () => Math.max(1, howItWorksItems.length - getVisibleItemCount() + 1);
+
+  const updateTrackPosition = () => {
+    const firstCard = track.firstElementChild;
+
+    if (!firstCard) {
+      return;
+    }
+
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const trackStyles = window.getComputedStyle(track);
+    const gap = parseFloat(trackStyles.columnGap || trackStyles.gap) || 0;
+    track.style.transform = `translateX(-${activeIndex * (cardWidth + gap)}px)`;
+  };
+
+  const updatePaginationState = () => {
+    dots.forEach((dot, index) => {
+      const isActive = index === activeIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-selected', String(isActive));
+    });
+  };
+
+  const renderPagination = () => {
+    pagination.replaceChildren(...Array.from({ length: getPositionCount() }, (_, index) => createStepDot(index)));
+    dots = [...pagination.querySelectorAll('[data-step-dot]')];
+  };
+
+  const updateSteps = (nextIndex) => {
+    activeIndex = (nextIndex + getPositionCount()) % getPositionCount();
+    updateTrackPosition();
+    updatePaginationState();
+  };
+
+  track.append(...howItWorksItems.map(createStepCard));
+  renderPagination();
+  updateTrackPosition();
+
+  previousButton.addEventListener('click', () => updateSteps(activeIndex - 1));
+  nextButton.addEventListener('click', () => updateSteps(activeIndex + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => updateSteps(Number(dot.dataset.stepDot)));
+  });
+
+  window.addEventListener('resize', () => {
+    activeIndex = Math.min(activeIndex, getPositionCount() - 1);
+    renderPagination();
+    updateTrackPosition();
+    updatePaginationState();
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => updateSteps(Number(dot.dataset.stepDot)));
     });
   });
 }
